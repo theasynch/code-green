@@ -27,10 +27,12 @@ class CodeGreenAuditor {
         const timestamp = new Date().toLocaleTimeString();
         const prefix = `\x1b[90m[${timestamp}]\x1b[0m `;
         if (dynamic) {
+            // Clear line, return to start, print, and NO newline
             this.writeEmitter.fire(`\x1b[2K\r${prefix}${message}`);
         }
         else {
-            this.writeEmitter.fire(`${prefix}${message}\r\n`);
+            // Print message and start a new line
+            this.writeEmitter.fire(`\r\n${prefix}${message}\r\n`);
         }
     }
     clear() {
@@ -98,6 +100,11 @@ async function activate(context) {
     statusBarItem.show();
     // Register Sidebar View
     const treeView = vscode.window.createTreeView('code-green-status', { treeDataProvider: summaryProvider });
+    treeView.onDidChangeVisibility(e => {
+        if (e.visible) {
+            vscode.commands.executeCommand('code-green.openDashboard');
+        }
+    });
     context.subscriptions.push(treeView);
     await scanWorkspace();
     vscode.workspace.onDidOpenTextDocument(doc => scanDocument(doc), null, context.subscriptions);
@@ -225,7 +232,10 @@ async function scanWorkspace() {
         let totalPotentialSaving = 0;
         const vampireInstances = [];
         const languagesFound = new Set();
-        for (const file of auditTargetFiles) {
+        for (let i = 0; i < auditTargetFiles.length; i++) {
+            const file = auditTargetFiles[i];
+            const fileName = path.basename(file.fsPath);
+            auditor.log(`\x1b[33m⏳ Auditing ${i + 1}/${auditTargetFiles.length}:\x1b[0m ${fileName}`, true);
             const doc = await vscode.workspace.openTextDocument(file);
             const diagnostics = (0, scanner_1.scanCode)(doc.getText(), doc.languageId);
             diagnosticCollection.set(file, diagnostics);

@@ -20,16 +20,18 @@ class CodeGreenAuditor implements vscode.Pseudoterminal {
 	open(): void {
 		this.log("\x1b[1;32m🌿 Code-Green Audit Console Initialized\x1b[0m\r\n");
 	}
-	close(): void {}
+	close(): void { }
 
 	public log(message: string, dynamic: boolean = false) {
 		const timestamp = new Date().toLocaleTimeString();
 		const prefix = `\x1b[90m[${timestamp}]\x1b[0m `;
-		
+
 		if (dynamic) {
+			// Clear line, return to start, print, and NO newline
 			this.writeEmitter.fire(`\x1b[2K\r${prefix}${message}`);
 		} else {
-			this.writeEmitter.fire(`${prefix}${message}\r\n`);
+			// Print message and start a new line
+			this.writeEmitter.fire(`\r\n${prefix}${message}\r\n`);
 		}
 	}
 
@@ -112,6 +114,11 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	// Register Sidebar View
 	const treeView = vscode.window.createTreeView('code-green-status', { treeDataProvider: summaryProvider });
+	treeView.onDidChangeVisibility(e => {
+		if (e.visible) {
+			vscode.commands.executeCommand('code-green.openDashboard');
+		}
+	});
 	context.subscriptions.push(treeView);
 
 	await scanWorkspace();
@@ -189,7 +196,7 @@ async function streamHistoryAudit(limit: number) {
 	const rootPath = workspaceFolders[0].uri.fsPath;
 
 	auditor.log(`\x1b[1;36m🔄 Initiating Time-Range Audit (Limit: ${limit === -1 ? 'MAX' : limit})\x1b[0m`);
-	
+
 	const gitLog = await runGitCommand(`log ${limit !== -1 ? `-n ${limit}` : ''} --pretty=format:"%H|%s"`, rootPath);
 	if (!gitLog) {
 		currentPanel.webview.postMessage({ type: 'historyComplete' });
@@ -206,7 +213,7 @@ async function streamHistoryAudit(limit: number) {
 	for (let i = commits.length - 1; i >= 0; i--) {
 		const commit = commits[i];
 		auditor.log(`\x1b[33m⏳ Auditing Commit [${commit.hash.substring(0, 7)}]:\x1b[0m ${commit.msg.substring(0, 40)}`, true);
-		
+
 		const fileList = await runGitCommand(`ls-tree -r --name-only ${commit.hash}`, rootPath);
 		let commitVampires = 0;
 		for (const filePath of fileList.split('\n')) {
@@ -214,15 +221,15 @@ async function streamHistoryAudit(limit: number) {
 			if (supportedExtensions.includes(ext)) {
 				const content = await runGitCommand(`show ${commit.hash}:${filePath}`, rootPath);
 				if (content) {
-					const langId = Object.keys(EXTENSION_MAP).find(k => EXTENSION_MAP[k] === ext) || "javascript"; 
+					const langId = Object.keys(EXTENSION_MAP).find(k => EXTENSION_MAP[k] === ext) || "javascript";
 					const diagnostics = scanCode(content, langId);
 					commitVampires += diagnostics.length;
 				}
 			}
 		}
 
-		currentPanel.webview.postMessage({ 
-			type: 'historyPoint', 
+		currentPanel.webview.postMessage({
+			type: 'historyPoint',
 			data: { timestamp: commit.hash.substring(0, 7), score: Math.max(0, 100 - (commitVampires * 1.2)), commit: commit.msg }
 		});
 	}
@@ -244,7 +251,7 @@ async function scanWorkspace() {
 		const rootPath = workspaceFolders[0].uri.fsPath;
 		const allFiles = await vscode.workspace.findFiles('**/*', '**/node_modules/**');
 		const supportedExtensions = Object.keys(EXTENSION_MAP);
-		
+
 		const auditTargetFiles: vscode.Uri[] = [];
 		allFiles.forEach(file => {
 			const ext = path.extname(file.fsPath).toLowerCase().replace('.', '');
@@ -258,11 +265,15 @@ async function scanWorkspace() {
 		const vampireInstances: any[] = [];
 		const languagesFound = new Set<string>();
 
-		for (const file of auditTargetFiles) {
+		for (let i = 0; i < auditTargetFiles.length; i++) {
+			const file = auditTargetFiles[i];
+			const fileName = path.basename(file.fsPath);
+			auditor.log(`\x1b[33m⏳ Auditing ${i + 1}/${auditTargetFiles.length}:\x1b[0m ${fileName}`, true);
+
 			const doc = await vscode.workspace.openTextDocument(file);
 			const diagnostics = scanCode(doc.getText(), doc.languageId);
 			diagnosticCollection.set(file, diagnostics);
-			
+
 			if (diagnostics.length > 0) languagesFound.add(doc.languageId);
 
 			diagnostics.forEach(d => {

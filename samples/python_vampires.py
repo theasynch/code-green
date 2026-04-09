@@ -1,13 +1,3 @@
-import requests
-import time
-
-def process_data():
-    results = []
-    # VAMPIRE: Append in a loop (INEFFICIENT)
-    for i in range(100):
-        results.append(i * 2)
-
-    # VAMPIRE: Frequent polling (ENERGY VAMPIRE)
-    while True:
-        requests.get("https://api.example.com/status")
-        time.sleep(1)
+# Phase 5: Elite Green Status (1 Vampire)
+global x
+for i in range(10): x = i

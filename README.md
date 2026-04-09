@@ -1,95 +1,201 @@
-# 🌿 Code-Green: Sustainable Computing Auditor
-> *Transforming Carbon-Heavy Algorithms into Eco-Futurist Efficiency.*
+<div align="center">
+
+<img src="assets/logo.png" width="600" alt="Code-Green Hero Banner">
+
+# Sustainable Computing Auditor
+> **"Transforming Carbon-Heavy Algorithms into Eco-Futurist Efficiency."**
+
+[![Build Status](https://img.shields.io/badge/Build-Success-brightgreen)](https://github.com/arjaviii/code-green)
+[![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-VSCode-68217A)](https://marketplace.visualstudio.com/)
+[![Version](https://img.shields.io/badge/Version-1.0.0-emerald)](package.json)
+
+[🚀 Features](#-key-innovations) • [🏗 Architecture](#-how-it-works) • [🛠 Installation](#-installation--setup) • [🕹 Walkthrough](#-walkthrough) • [⚖️ Judge's Corner](#-judges-corner-qa)
 
 ---
 
-## 🧭 Part 0: The Vision & Core Features
+</div>
 
+## 🧭 The Vision
 **Code-Green** is a professional-grade VS Code extension designed to bridge the gap between **Software Engineering** and **Environmental Sustainability**. In an era where data centers consume nearly 3% of global electricity, Code-Green empowers developers to visualize, audit, and eliminate "Carbon Leakage" directly from their IDE.
 
-### 🚀 Flagship Feature Catalog
+---
 
-Through our iterative development, Code-Green has evolved from a basic scanner into a professional-grade observability platform. Here is the definitive list of innovations:
+## 🚀 Key Innovations
 
-- **1. Evolutionary Auditing (Git-History Integration)**: 
-    - **Stock-Market Range Selectors**: Analysis across **1C, 5C, 10C, or MAX** commits.
-    - **Streaming History Engine**: Real-time Git traversal that populates the dashboard commit-by-commit.
-    - **Generating Time Management**: Glassmorphic "Trend Generating" overlay with pulsing leaf animations for long-running deep audits.
-- **2. Cinematic Dashboard Architecture**:
-    - **Stagger-Draw Animation**: Sequential reveal system where the trend line draws left-to-right, followed by a **120ms staggered pop-in** of commit data points.
-    - **Modular Card Design**: Decoupled, glassmorphic layout for Sustainability Score, Project Impact, and Inefficiency Tracking.
-    - **Interactive Pro-Tooltips**: Monospace `COMMIT #hash` headers (0.7 opacity) with status-aware score metrics.
-    - **Intelligent Filtering & Pagination**: Sizable vampire lists with Category sorting (CPU, Memory, I/O, etc.) and footer pagination.
-- **3. High-Performance IDE Experience**:
-    - **Dynamic Audit Console (Pseudoterminal)**: A custom `vscode.Pseudoterminal` implementation providing **in-place line updates (`\r`)**. No log spam—just a clean, high-speed progress visual.
-    - **Jump-to-Code Navigation**: One-click arrow icons that open the target file, scroll to the line, and highlight the inefficiency.
-    - **Branded Activity Bar (Sidebar)**: Permanent **Leaf Icon** (synced with dashboard design) housing a live Sustainability Status Summary.
-- **4. The "Neo-Solar" Design System**:
-    - **Minimalist Iconography**: Hand-coded flat SVG icons tailored for theme-aware visibility.
-    - **Premium Typography**: Sophisticated hierarchy using **Outfit** for headings, **Inter** for UI, and **Fira Code** for monospace ligatures like `O(n^3)`.
-    - **Contextual Status Bar**: Real-time score heartbeat at the bottom of the editor.
+<table align="center">
+  <tr>
+    <td width="50%" align="center">
+      <h3>🌍 Project Sustainability Score</h3>
+      <p>A single, data-driven health metric derived from <b>Deep Workspace Audits</b> and assigned efficiency weighting.</p>
+    </td>
+    <td width="50%" align="center">
+      <h3>🧬 Evolutionary Auditing</h3>
+      <p>Analysis across <b>1C, 5C, 10C, or MAX</b> commits using Stock-Market style range selectors.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <h3>⌨️ High-Speed Audit Console</h3>
+      <p>Dynamic <code>Pseudoterminal</code> implementation with <b>in-place line updates</b> (No log spam).</p>
+    </td>
+    <td width="50%" align="center">
+      <h3>🖱 Jump-to-Code Navigation</h3>
+      <p>One-click arrow icons that open the target file, scroll to the line, and <b>highlight</b> the inefficiency.</p>
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 🧬 Part A: The "Vampire" Engine & Environmental Impact
+## 🖼️ Extension Snippets
 
-### What are "Energy Vampires"?
-Energy Vampires are inefficient code patterns that have minimal impact on functionality but a massive, compounding impact on resource consumption. These patterns fall into four critical taxonomies:
-1.  **CPU Vampires**: Computationally expensive patterns like string concatenation in loops or redundant runtime checks.
-2.  **Memory Vampires**: Inefficient collection handling (e.g., `LinkedList` vs `ArrayList`) that triggers excessive Garbage Collection (GC) cycles.
-3.  **I/O Vampires**: Excessive flushing (like `std::endl` in C++) or redundant DB queries (`SELECT *`) that keep hardware pins active and consuming power.
-4.  **Algorithmic Vampires**: Non-optimal complexity (O(n³)+) that scales exponentially in energy cost as datasets grow.
+<div align="center">
 
-### The Analytics Pipeline: How we calculate "Green Credits"
-Code-Green uses a proprietary heuristic model to quantify the environmental cost of code:
-- **Sustainability Score**: Calculated as `100 - (Detected_Vampires * 1.2)`. This represents the "Green Health" of the current workspace.
-- **Recovery Potential**: Each rule (e.g., swapping `forEach` for a `for` loop) has an assigned `saving` value. This value represents the estimated percentage reduction in thermal output for that specific logic block.
-- **Already Recovered**: A composite metric that estimates the total "Efficiency Credits" gained by applying optimizations. In a large-scale data center, these points translate to **reduced cooling overhead** and **hardware longevity**.
+<table align="center">
+  <tr>
+    <td width="36%" align="center">
+      <img src="assets/sus_score.png" width="100%"><br>
+      <b>Sustainability Score Gauge</b>
+    </td>
+    <td width="64%" align="center">
+      <img src="assets/evo_graph.png" width="100%"><br>
+      <b>Evolutionary Trend Graph</b>
+    </td>
+  </tr>
+</table>
 
-### Real-World Impact: The Data Center Perspective
-In a standard web app, a `String +=` in a loop might take nanoseconds. However, when scaled across **thousands of microservices** in a hyper-scale data center:
-- **Thermal Heat**: Inefficient code generates heat. Increased heat requires more power for HVAC and liquid cooling systems.
-- **Hardware Throttling**: Higher energy consumption leads to thermal throttling, requiring *more* hardware to handle the same load, increasing the "E-Waste" footprint.
-- **Carbon Offset**: Optimized code reduces the demand on power grids, directly lowering the carbon intensity of software operations.
+<table align="center">
+  <tr>
+    <td width="55%" align="center">
+      <img src="assets/detect.png" width="100%"><br>
+      <b>Energy Vampire Detection</b>
+    </td>
+    <td width="45%" align="center">
+      <img src="assets/proj_impact.png" width="100%"><br>
+      <b>Project Impact Metrics</b>
+    </td>
+  </tr>
+</table>
 
-### The Tech Stack (The "Eco-Futurist" Stack)
-- **Engine**: TypeScript & Node.js, utilizing regular-expression based static analysis for high-speed, zero-overhead scanning.
-- **Visuals**: React 18, Vite, and Recharts for the cinematic canvas.
-- **UI Architecture**: Custom vanilla CSS employing **Glassmorphism**, HSL color-tailoring, and sequential SVG animations.
-- **Observability**: VS Code Pseudoterminal API (Pty) for ANSI-colored, in-place log updates.
-
----
-
-## 🕹️ Part B: Complete User Walkthrough
-
-### 1. Launching the Auditor
-- **Activity Bar**: Click the **Leaf Icon** in your sidebar. This is your "Mission Control." It shows a live summary of your current score and vampires.
-- **Status Bar**: A real-time "Green Heartbeat" is visible at the bottom left. Click it anytime to fly straight into the Dashboard.
-
-### 2. Navigating the Dashboard
-The dashboard is split into modular, interactive cards:
-- **Sustainability Score**: A dynamic gauge that counts up to your current health.
-- **Project Impact**: Tracks your "Recovery Potential" (the potential green gains) and "Vampires Found."
-- **Language Coverage**: Shows exactly which technologies are contributing to your footprint.
-
-### 3. Mastering the Trend Graph (Evolutionary Auditing)
-This is where the magic happens.
-- **Range Selectors**: Use **1C, 5C, 10C, or MAX** to request a historical audit of your Git commits.
-- **Cinematic Reveal**: Watch as the trend line draws from left to right, followed by a staggered "pop-in" of data points.
-- **Hover Detail**: Hover over any dot to see the `COMMIT #hash` and the specific message. This helps you identify exactly which commit introduced an energy regression.
-
-### 4. Handling Inefficiencies (Filtering & Navigation)
-Found a "Vampire"? Don't let it drain your resources:
-- **Filtering**: Use the dropdown to sort by category (CPU, Memory, etc.). 
-- **Pagination**: Navigate large projects effortlessly with the built-in footer controls.
-- **Jump-to-Code**: Click the **Arrow Icon** on any vampire card. Code-Green will instantly open the file, scroll to the exact line, and highlight the inefficiency for you.
-
-### 5. Reading the "Audit Console"
-When you run a Global Audit, the **Code-Green Audit Console** will appear. Unlike a standard log, this terminal is dynamic:
-- **In-place Updates**: It updates the *same line* for every commit/file, preventing log spam and providing a sleek, high-performance visual of the scanning process.
-- **ANSI Color Coding**: Green for "Eco-Safe," Yellow for "Auditing," and Red for "Vampire Found."
+</div>
 
 ---
 
-> *“Optimization is the ultimate form of environmentalism in the digital age.”* 
-> **— The Code-Green Team**
+## 🧬 How it Works
+The Code-Green engine traversal uses a high-performance static analysis pipeline to identify "Energy Vampires."
+
+```mermaid
+graph TD
+    A[Git Repository] -->|Commit Traversal| B[Evolutionary Engine]
+    B -->|Static Analysis| C[Vampire Scanner]
+    C -->|Rules Registry| D{Rule Matching}
+    D -->|CPU/Memory/IO| E[Sustainability Report]
+    E -->|JSON Bridge| F[React Cinematic Dashboard]
+    F -->|Interactive UI| G[Developer Environment]
+    G -->|Jump-to-Line| A
+```
+
+---
+
+## 🦇 The Energy Vampire Taxonomy
+Code-Green identifies four critical taxonomies of inefficiency that bleed data center resources.
+
+| Category | Typical Vampire | Environmental Cost | Green Solution |
+| :--- | :--- | :--- | :--- |
+| **CPU** | Loop Concatenation | High thermal output per cycle | String Builders / Buffers |
+| **Memory** | Inefficient Collection Types | Frequent GC GC overhead | Primitive Arrays / Optimal Lists |
+| **I/O** | Redundant DB Queries | Physical hardware pin power-on | Caching / Batching |
+| **Algorithm** | O(n³) Complexity | Exponential energy scaling | Optimized Sorts / Data structures |
+
+---
+
+## 🛠 Installation & Setup
+
+<details open>
+<summary><b>Phase 1: The Environment</b></summary>
+Ensure you have <b>Node.js (LTS)</b>, <b>VS Code</b>, and <b>Git</b> installed on your system.
+
+1.  **Clone the Repository**:
+    ```powershell
+    git clone https://github.com/arjaviii/code-green.git
+    cd code-green
+    ```
+2.  **Verify Git**: Ensure your terminal recognizes `git --version` as the Evolutionary Auditing engine relies on it.
+</details>
+
+<details>
+<summary><b>Phase 2: Dependencies</b></summary>
+
+```powershell
+# Root level
+cd extension
+npm install
+cd ../dashboard
+npm install
+```
+</details>
+
+<details>
+<summary><b>Phase 3: The Definitive Build</b></summary>
+
+```powershell
+cd extension
+npm run build-all
+```
+> [!IMPORTANT]
+> This command compiles the logic (**tsc**) and bundles the React dashboard (**vite**) into a single package.
+</details>
+
+<details>
+<summary><b>Phase 4: Sideloading (Run)</b></summary>
+Open the <b>extension/</b> folder in VS Code and press <b>F5</b> to launch the specialized [Extension Development Host].
+</details>
+
+---
+
+## 🕹 Walkthrough
+
+1.  **Mission Control**: Click the **Leaf Icon** in your sidebar.
+2.  **Historical Audit**: Toggle the **10C** or **MAX** ranges on the graph.
+3.  **Vampire Hunting**: Use the dropdown to filter by "CPU Impact."
+4.  **Instant Fix**: Use the **Arrow Icon** to jump straight to the offending code block.
+
+---
+
+## ⚖️ Judge's Corner (Q&A)
+<details>
+<summary><b>Fundamental Conceptual & Technical Questions</b></summary>
+
+### 💡 Conceptual Part
+**1. Why does code efficiency matter for the environment?**
+Inefficient code makes computers work harder, generating more heat and consuming more electricity. At a global scale (data centers), this adds up to a massive carbon footprint.
+
+**2. What is an "Energy Vampire"?**
+It's an inefficient code pattern that performs a task correctly but uses more power than necessary (e.g., using a sledgehammer to crack a nut).
+
+**3. What does the "Sustainability Score" represent?**
+It's a health check for your project’s efficiency—calculated by penalizing the score based on the number and severity of vampires found.
+
+**4. How does "Evolutionary Auditing" help?**
+It lets you look back in time at previous versions of your code to see if your project is getting greener or more "energy-drained" over time.
+
+*(... and 16 more questions included in the repository documentation)*
+
+### 🛠️ Technical Part
+**1. How does the scanner find vampires without running the code?**
+It uses **Static Analysis**, scanning the source code for specific text patterns and architectural anti-patterns.
+
+**2. Why use a "Pseudoterminal" for logs?**
+Standard terminals spam new lines. Our Pty implementation provides in-place updates, making the audit look like a high-performance system console.
+
+**3. How does the "Jump-to-Code" feature work?**
+The React dashboard sends a `postMessage` to the VS Code backend with the file path and line number, which then opens the document and scrolls the cursor.
+</details>
+
+---
+
+<p align="center">
+  <i>“Optimization is the ultimate form of environmentalism in the digital age.”</i><br>
+  <b>— The Code-Green Team —</b>
+</p>

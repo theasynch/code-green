@@ -422,13 +422,46 @@ header {
 
 .efficiency-msg {
   margin-top: 24px;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  padding: 12px;
+  width: 100%;
+}
+
+.efficiency-msg-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
   background: rgba(255, 255, 255, 0.03);
-  border-radius: 12px;
-  border-left: 3px solid var(--accent-green);
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  gap: 8px;
+}
+
+.status-header {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.status-sub {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  text-align: center;
+}
+
+.accent-num {
+  color: var(--accent-blue);
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+.accent-elite {
+  color: var(--accent-green);
+  font-weight: 800;
+  letter-spacing: 0.02em;
 }
 
 .vampire-list { list-style: none; margin-top: 24px; }

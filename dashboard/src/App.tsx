@@ -179,10 +179,49 @@ const App: React.FC = () => {
   };
 
   const getEfficiencyMsg = () => {
-    if (report.score === 100) return <span>Elite status achieved. Your code is currently 100% Green.</span>;
-    if (report.score > 80) return <span>Your project is "Highly Efficient". Fix {report.vampiresDetected} more vampires to reach Elite status.</span>;
-    if (report.score > 50) return <span>"Moderate Efficiency". Resolving {Math.ceil(report.vampiresDetected/2)} vampires will boost your profile to Green.</span>;
-    return <span>"Critical Inefficiency". Immediate remediation recommended to recover {report.carbonRecoveryPotential}g.</span>;
+    const count = report.vampiresDetected;
+    const recovery = report.carbonRecoveryPotential;
+
+    if (report.score === 100) {
+      return (
+        <div className="efficiency-msg-wrapper">
+          <div className="status-header" style={{ color: 'var(--accent-green)' }}>ELITE STATUS ACHIEVED</div>
+          <div className="status-sub">Your code is currently <span className="accent-elite">100% GREEN</span>. Excellent work!</div>
+        </div>
+      );
+    }
+
+    if (report.score > 80) {
+      return (
+        <div className="efficiency-msg-wrapper">
+          <div className="status-header" style={{ color: 'var(--accent-green)' }}>HIGHLY EFFICIENT</div>
+          <div className="status-sub">
+            Fix <span className="accent-num">{count}</span> more vampire{count !== 1 ? 's' : ''} to reach <span className="accent-elite">ELITE</span> status.
+          </div>
+        </div>
+      );
+    }
+
+    if (report.score > 50) {
+      const half = Math.ceil(count / 2);
+      return (
+        <div className="efficiency-msg-wrapper">
+          <div className="status-header" style={{ color: '#ffbb28' }}>MODERATE EFFICIENCY</div>
+          <div className="status-sub">
+            Resolving <span className="accent-num">{half}</span> vampire{half !== 1 ? 's' : ''} will boost your profile to <span className="accent-elite">GREEN</span>.
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="efficiency-msg-wrapper">
+        <div className="status-header" style={{ color: 'var(--vampire-red)' }}>CRITICAL INEFFICIENCY</div>
+        <div className="status-sub">
+          Immediate remediation recommended to recover <span className="accent-num">{recovery}g</span> of carbon.
+        </div>
+      </div>
+    );
   };
 
   const filteredInstances = useMemo(() => {
