@@ -88,12 +88,18 @@ const App: React.FC = () => {
     projectName: 'Loading...',
     lastUpdate: new Date().toISOString(),
     score: 100,
+    sustainabilityScore: 100,
     vampiresDetected: 0,
+    totalDeltaE_millijoules: 0,
+    totalCO2_mg_potential: 0,
     carbonRecoveryPotential: 0,
-    carbonAlreadyRecovered: 0, 
+    carbonAlreadyRecovered: 0,
+    totalLinesOfCode: 0,
     languages: [],
     vampireInstances: []
   });
+
+  const [isAuditing, setIsAuditing] = useState(false);
 
   const [filterCategory, setFilterCategory] = useState<string>('All');
   const [currentPage, setCurrentPage] = useState(1);
@@ -108,7 +114,8 @@ const App: React.FC = () => {
       const message = event.data;
       if (message.type === 'updateReport') {
         setReport(message.data);
-        setCurrentPage(1); 
+        setCurrentPage(1);
+        setIsAuditing(false); // scan complete — restore button
       } else if (message.type === 'historyPoint') {
         setRawHistory(prev => [...prev, message.data]);
       } else if (message.type === 'historyComplete') {
@@ -147,10 +154,12 @@ const App: React.FC = () => {
     }
   }, [selectedRange]);
 
-  const animatedScore = useCountUp(report.score);
+  const animatedScore = useCountUp(Math.round(report.sustainabilityScore ?? report.score));
   const animatedVampires = useCountUp(report.vampiresDetected);
-  const animatedRecoveryPotential = useCountUp(report.carbonRecoveryPotential);
-  const animatedAlreadyRecovered = useCountUp(report.carbonAlreadyRecovered);
+  // Physics: show totalDeltaE in tenths of mJ (×10 for integer counter, display ÷10)
+  const animatedDeltaE_x10 = useCountUp(Math.round((report.totalDeltaE_millijoules ?? 0) * 10));
+  const animatedCO2_mg_x100 = useCountUp(Math.round((report.totalCO2_mg_potential ?? 0) * 100));
+  const animatedLOC = useCountUp(report.totalLinesOfCode ?? 0);
 
   // Custom Dot for Staggered Appearance
   const CustomDot = (props: any) => {
@@ -180,35 +189,37 @@ const App: React.FC = () => {
 
   const getEfficiencyMsg = () => {
     const count = report.vampiresDetected;
-    const recovery = report.carbonRecoveryPotential;
+    const ss = report.sustainabilityScore ?? report.score;
+    const co2mg = ((report.totalCO2_mg_potential) ?? 0).toFixed(3);
 
-    if (report.score === 100) {
+    if (ss >= 100) {
       return (
         <div className="efficiency-msg-wrapper">
           <div className="status-header" style={{ color: 'var(--accent-green)' }}>ELITE STATUS ACHIEVED</div>
-          <div className="status-sub">Your code is currently <span className="accent-elite">100% GREEN</span>. Excellent work!</div>
+          <div className="status-sub">Your code is currently <span className="accent-elite">100% GREEN</span>. Zero energy waste detected.</div>
         </div>
       );
     }
 
-    if (report.score > 80) {
+    if (ss > 80) {
       return (
         <div className="efficiency-msg-wrapper">
           <div className="status-header" style={{ color: 'var(--accent-green)' }}>HIGHLY EFFICIENT</div>
           <div className="status-sub">
-            Fix <span className="accent-num">{count}</span> more vampire{count !== 1 ? 's' : ''} to reach <span className="accent-elite">ELITE</span> status.
+            Fix <span className="accent-num">{count}</span> vampire{count !== 1 ? 's' : ''} to reach <span className="accent-elite">ELITE</span>.
+            Potential CO₂ recovery: <span className="accent-num">{co2mg} mg</span>.
           </div>
         </div>
       );
     }
 
-    if (report.score > 50) {
+    if (ss > 50) {
       const half = Math.ceil(count / 2);
       return (
         <div className="efficiency-msg-wrapper">
           <div className="status-header" style={{ color: '#ffbb28' }}>MODERATE EFFICIENCY</div>
           <div className="status-sub">
-            Resolving <span className="accent-num">{half}</span> vampire{half !== 1 ? 's' : ''} will boost your profile to <span className="accent-elite">GREEN</span>.
+            Fixing <span className="accent-num">{half}</span> vampire{half !== 1 ? 's' : ''} will boost SS to <span className="accent-elite">GREEN</span> tier.
           </div>
         </div>
       );
@@ -218,7 +229,7 @@ const App: React.FC = () => {
       <div className="efficiency-msg-wrapper">
         <div className="status-header" style={{ color: 'var(--vampire-red)' }}>CRITICAL INEFFICIENCY</div>
         <div className="status-sub">
-          Immediate remediation recommended to recover <span className="accent-num">{recovery}g</span> of carbon.
+          Fixing all vampires would recover <span className="accent-num">{co2mg} mg</span> CO₂.
         </div>
       </div>
     );
@@ -248,6 +259,12 @@ const App: React.FC = () => {
     }
   };
 
+  const handleAuditNow = () => {
+    if (!vscode || isAuditing) return;
+    setIsAuditing(true);
+    vscode.postMessage({ type: 'auditNow' });
+  };
+
   const categories = ['All', 'CPU', 'Memory', 'I/O', 'Algorithmic'];
   const ranges = ['1C', '5C', '10C', 'MAX'];
 
@@ -270,7 +287,28 @@ const App: React.FC = () => {
         </div>
         <div className="project-info">
           <span className="project-name">{report.projectName}</span>
-          <span className="last-update">Last Audit: {new Date(report.lastUpdate).toLocaleTimeString()}</span>
+          <div className="audit-row">
+            <span className="last-update">Last Audit: {new Date(report.lastUpdate).toLocaleTimeString()}</span>
+            <button
+              id="audit-now-btn"
+              className={`audit-now-btn${isAuditing ? ' auditing' : ''}`}
+              onClick={handleAuditNow}
+              disabled={isAuditing}
+              title="Recalibrate hardware weights and re-run full workspace audit"
+            >
+              {isAuditing ? (
+                <><span className="audit-spinner" />Auditing...</>
+              ) : (
+                <>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="23 4 23 10 17 10" /><polyline points="1 20 1 14 7 14" />
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+                  </svg>
+                  Audit Now
+                </>
+              )}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -292,7 +330,7 @@ const App: React.FC = () => {
                   <span className="score-percent">%</span>
                 </div>
               </div>
-              <div className="score-label">PROJECT SUSTAINABILITY SCORE</div>
+              <div className="score-label">SS = 100 − (Σ sev·W) × log₁₀(LOC)</div>
               <div className="efficiency-msg">{getEfficiencyMsg()}</div>
             </div>
           </div>
@@ -300,7 +338,7 @@ const App: React.FC = () => {
           <div className="glass-card impact-section">
             <div className="card-header-simple">
               <div className="icon-wrap blue"><IconTrend /></div>
-              <h3>Project Impact</h3>
+              <h3>Energy Impact</h3>
             </div>
             <div className="stats-box-grid">
               <div className="stat-card">
@@ -308,12 +346,16 @@ const App: React.FC = () => {
                 <div className="stat-value red">{animatedVampires}</div>
               </div>
               <div className="stat-card">
-                <div className="stat-label">Already Recovered</div>
-                <div className="stat-value blue">{animatedAlreadyRecovered}g</div>
+                <div className="stat-label">Total ΔE Wasted</div>
+                <div className="stat-value blue">{(animatedDeltaE_x10 / 10).toFixed(1)} mJ</div>
               </div>
               <div className="stat-card">
-                <div className="stat-label">Recovery Potential</div>
-                <div className="stat-value green">{animatedRecoveryPotential}g</div>
+                <div className="stat-label">CO₂ Recoverable</div>
+                <div className="stat-value green">{(animatedCO2_mg_x100 / 100).toFixed(2)} mg</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-label">Lines Audited</div>
+                <div className="stat-value" style={{color:'var(--text-secondary)'}}>{animatedLOC.toLocaleString()}</div>
               </div>
             </div>
             <div className="languages-container">
@@ -418,7 +460,13 @@ const App: React.FC = () => {
                           </div>
                           <div className="vampire-meta-row">
                             <span className="vampire-cat-tag">{instance.category}</span>
-                            <span className="vampire-desc">Potential saving: {instance.saving}%</span>
+                            <span className="vampire-cat-tag" style={{background:'rgba(255,100,0,0.15)',color:'#ff9055'}}>W={instance.energyWeight}</span>
+                            {instance.deltaE_millijoules != null && (
+                              <span className="vampire-desc">ΔE: {(instance.deltaE_millijoules).toFixed(3)} mJ</span>
+                            )}
+                            {instance.co2_micrograms != null && (
+                              <span className="vampire-desc">CO₂: {(instance.co2_micrograms).toFixed(2)} μg</span>
+                            )}
                           </div>
                         </div>
                         <button className="jump-btn" onClick={() => handleJumpToCode(instance)} title="Jump to Line">

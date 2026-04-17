@@ -8,7 +8,7 @@
 [![Build Status](https://img.shields.io/badge/Build-Success-brightgreen)](https://github.com/arjaviii/code-green)
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-VSCode-68217A)](https://marketplace.visualstudio.com/)
-[![Version](https://img.shields.io/badge/Version-1.0.0-emerald)](package.json)
+[![Version](https://img.shields.io/badge/Version-2.0.0-emerald)](package.json)
 
 [🚀 Features](#-key-innovations) • [🏗 Architecture](#-how-it-works) • [🛠 Installation](#-installation--setup) • [🕹 Walkthrough](#-walkthrough) • [⚖️ Judge's Corner](#-judges-corner-qa)
 
@@ -45,6 +45,34 @@
     </td>
   </tr>
 </table>
+
+---
+
+## ⚗️ v2.0 — Physics-Grounded Energy Engine
+
+> *Previous versions estimated energy waste using static percentage heuristics. v2.0 replaces this entirely with a taxonomy-specific physical model.*
+
+Code-Green now computes energy waste in **real SI units** — Joules and grams of CO₂ — derived from first-principles equations grounded in computer architecture and power systems theory. Each category of energy vampire (CPU, Memory, I/O) is modelled using a distinct physical equation calibrated to measurable hardware parameters such as thermal design power, CPU clock frequency, GC pause duration, and grid carbon intensity.
+
+The **Sustainability Score** is no longer a linear penalty counter. It is computed from a bounded decay function applied to a density-normalized weighted sum across all detected inefficiencies — meaning scores remain meaningful and non-degenerate across codebases of any size, from a 50-line script to a 100,000-line enterprise project.
+
+Energy estimates are expressed per detected instance and reported directly in the IDE diagnostic tooltip, the audit console, and the dashboard — giving developers a concrete physical cost rather than an abstract percentage.
+
+> ⚠️ *The specific weighting taxonomy, scoring formula, and physical model architecture are proprietary and subject to patent filing. Implementation details are not disclosed in this repository.*
+
+---
+
+## 🔬 v2.0 — Adaptive Hardware Calibration
+
+> *The same code pattern can waste dramatically different amounts of energy on different hardware. v2.0 accounts for this.*
+
+On first activation, Code-Green runs a **self-contained micro-benchmark suite** directly within the VS Code extension host. It executes representative vampire and optimal patterns for each inefficiency category and measures the actual performance ratios on the developer's machine using nanosecond-precision timing.
+
+These measured ratios are compared against a reference baseline to derive **per-category calibration factors**. All energy weights are then scaled by these factors before any scan is performed, ensuring that the reported Joule and CO₂ estimates reflect the **actual hardware environment** — not a generic cloud server profile.
+
+Calibration results are cached and reused across sessions. Developers can force a recalibration at any time via the Command Palette (`Code-Green: Recalibrate Hardware Weights`).
+
+> ⚠️ *The calibration methodology and its integration with the physical scoring model are proprietary and subject to patent filing.*
 
 ---
 
@@ -90,10 +118,12 @@ graph TD
     A[Git Repository] -->|Commit Traversal| B[Evolutionary Engine]
     B -->|Static Analysis| C[Vampire Scanner]
     C -->|Rules Registry| D{Rule Matching}
-    D -->|CPU/Memory/IO| E[Sustainability Report]
-    E -->|JSON Bridge| F[React Cinematic Dashboard]
-    F -->|Interactive UI| G[Developer Environment]
-    G -->|Jump-to-Line| A
+    D -->|Per-Category| E[Physics Energy Model]
+    E -->|Calibrated Weights| F[Sustainability Report]
+    F -->|JSON Bridge| G[React Cinematic Dashboard]
+    G -->|Interactive UI| H[Developer Environment]
+    H -->|Jump-to-Line| A
+    I[Hardware Benchmark] -->|Calibration Factors| E
 ```
 
 ---
@@ -175,7 +205,7 @@ Inefficient code makes computers work harder, generating more heat and consuming
 It's an inefficient code pattern that performs a task correctly but uses more power than necessary (e.g., using a sledgehammer to crack a nut).
 
 **3. What does the "Sustainability Score" represent?**
-It's a health check for your project’s efficiency—calculated by penalizing the score based on the number and severity of vampires found.
+A physics-grounded health metric for your project's energy efficiency. It is computed from a density-normalized, hardware-calibrated model and expressed as a bounded score in [0, 100]. A score of 100 means no detectable inefficiency patterns; lower scores reflect the density and severity of energy vampires relative to the codebase size.
 
 **4. How does "Evolutionary Auditing" help?**
 It lets you look back in time at previous versions of your code to see if your project is getting greener or more "energy-drained" over time.

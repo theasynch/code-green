@@ -33,6 +33,11 @@
         "command": "code-green.openDashboard",
         "title": "Code-Green: Open Sustainability Dashboard",
         "icon": "$(dashboard)"
+      },
+      {
+        "command": "code-green.recalibrate",
+        "title": "Code-Green: Recalibrate Hardware Weights",
+        "icon": "$(beaker)"
       }
     ],
     "menus": {

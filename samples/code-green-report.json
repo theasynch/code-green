@@ -1,56 +1,47 @@
 {
   "projectName": "samples",
-  "lastUpdate": "2026-04-04T17:44:41.298Z",
-  "score": 92.8,
-  "vampiresDetected": 6,
-  "carbonRecoveryPotential": 150,
-  "carbonAlreadyRecovered": 464,
+  "lastUpdate": "2026-04-17T18:51:00.959Z",
+  "sustainabilityScore": 82.8,
+  "totalDeltaE_joules": 8.459733333,
+  "totalDeltaE_millijoules": 8459.733,
+  "totalCO2_grams_potential": 0.001674322,
+  "totalCO2_mg_potential": 1674.322,
+  "totalLinesOfCode": 46,
+  "vampiresDetected": 3,
+  "languages": [
+    "python",
+    "java"
+  ],
   "vampireInstances": [
     {
-      "ruleId": "js-foreach-slow",
-      "description": "Array.forEach is slightly slower than a traditional for-loop.",
-      "saving": 5,
+      "ruleId": "python-global",
+      "description": "Global variable access in hot loop: LOAD_GLOBAL is ~2× slower than LOAD_FAST.",
+      "alternative": "Cache global in a local variable before the loop",
       "category": "CPU",
-      "fileName": "polyglot_vampires.js",
-      "fullPath": "c:\\Users\\awtha\\Documents\\GitHub\\code-green\\samples\\polyglot_vampires.js",
-      "line": 2,
-      "character": 4
-    },
-    {
-      "ruleId": "uni-nested-loop",
-      "description": "Deeply nested loop (O(n^3)+). High energy consumption.",
-      "saving": 45,
-      "category": "Algorithmic",
-      "fileName": "polyglot_vampires.js",
-      "fullPath": "c:\\Users\\awtha\\Documents\\GitHub\\code-green\\samples\\polyglot_vampires.js",
-      "line": 2,
-      "character": 5
+      "energyWeight": 4.2,
+      "severity": 1,
+      "deltaE_joules": -0.0026,
+      "deltaE_millijoules": -2.6,
+      "co2_grams": -5.145833333333332e-7,
+      "co2_micrograms": -0.5145833333333332,
+      "modelUsed": "CPU",
+      "fileName": "python_vampires.py",
+      "fullPath": "c:\\Users\\awtha\\Documents\\GitHub\\code-green\\samples\\python_vampires.py",
+      "line": 1,
+      "character": 0
     },
     {
       "ruleId": "java-linked-list",
-      "description": "LinkedList detected. ArrayList is ~15% more efficient.",
-      "saving": 15,
+      "description": "LinkedList detected. ArrayList gives O(1) access vs O(n) traversal.",
+      "alternative": "ArrayList",
       "category": "Memory",
-      "fileName": "java_vampires.java",
-      "fullPath": "c:\\Users\\awtha\\Documents\\GitHub\\code-green\\samples\\java_vampires.java",
-      "line": 6,
-      "character": 28
-    },
-    {
-      "ruleId": "uni-nested-loop",
-      "description": "Deeply nested loop (O(n^3)+). High energy consumption.",
-      "saving": 45,
-      "category": "Algorithmic",
-      "fileName": "java_vampires.java",
-      "fullPath": "c:\\Users\\awtha\\Documents\\GitHub\\code-green\\samples\\java_vampires.java",
-      "line": 5,
-      "character": 36
-    },
-    {
-      "ruleId": "java-linked-list",
-      "description": "LinkedList detected. ArrayList is ~15% more efficient.",
-      "saving": 15,
-      "category": "Memory",
+      "energyWeight": 5.5,
+      "severity": 2,
+      "deltaE_joules": 7.600000000000001,
+      "deltaE_millijoules": 7600.000000000002,
+      "co2_grams": 0.0015041666666666667,
+      "co2_micrograms": 1504.1666666666667,
+      "modelUsed": "Memory",
       "fileName": "aggressive_vampires.java",
       "fullPath": "c:\\Users\\awtha\\Documents\\GitHub\\code-green\\samples\\aggressive_vampires.java",
       "line": 5,
@@ -58,17 +49,32 @@
     },
     {
       "ruleId": "java-string-concat",
-      "description": "String + in loop.",
-      "saving": 25,
+      "description": "String += in loop creates O(n²) intermediate allocations.",
+      "alternative": "StringBuilder",
       "category": "CPU",
+      "energyWeight": 4.2,
+      "severity": 2,
+      "deltaE_joules": 0.8623333333333334,
+      "deltaE_millijoules": 862.3333333333334,
+      "co2_grams": 0.00017067013888888888,
+      "co2_micrograms": 170.67013888888889,
+      "modelUsed": "CPU",
       "fileName": "aggressive_vampires.java",
       "fullPath": "c:\\Users\\awtha\\Documents\\GitHub\\code-green\\samples\\aggressive_vampires.java",
       "line": 9,
       "character": 8
     }
   ],
-  "languages": [
-    "javascript",
-    "java"
-  ]
+  "score": 82.8,
+  "carbonRecoveryPotential": 1674,
+  "carbonAlreadyRecovered": 288,
+  "modelConstants": {
+    "f_cpu_hz": 3000000000,
+    "tdp_watts": 65,
+    "activity_factor": 0.2,
+    "t_gc_seconds": 0.05,
+    "ci_grid_g_per_kwh": 475,
+    "pue": 1.5,
+    "scaling_factor_s": 1
+  }
 }

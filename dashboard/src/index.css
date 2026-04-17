@@ -526,3 +526,61 @@ header {
 }
 
 @media (max-width: 900px) { .span-large-modular, .span-small { grid-column: span 12; } }
+
+/* Audit Now Button */
+.audit-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.audit-now-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: var(--font-main);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-green);
+  background: transparent;
+  border: 1px solid rgba(0, 255, 136, 0.35);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.audit-now-btn:hover:not(:disabled) {
+  background: var(--accent-green-glow);
+  border-color: var(--accent-green);
+  box-shadow: 0 0 12px var(--accent-green-glow);
+  transform: translateY(-1px);
+}
+
+.audit-now-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.audit-now-btn.auditing {
+  color: var(--text-secondary);
+  border-color: var(--glass-border);
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.audit-spinner {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--text-secondary);
+  border-top-color: var(--accent-green);
+  border-radius: 50%;
+  animation: spinAudit 0.75s linear infinite;
+}
+
+@keyframes spinAudit {
+  to { transform: rotate(360deg); }
+}
