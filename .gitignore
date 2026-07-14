@@ -1,0 +1,52 @@
+# ============================================================
+# Code-Green — .gitignore
+# Copyright (c) 2024–2026 Om Krunal Awthankar
+# ============================================================
+
+# --- Node / npm ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# --- Build outputs ---
+out/
+dist/
+build/
+*.vsix
+*.tgz
+
+# --- TypeScript ---
+*.js.map
+*.d.ts.map
+
+# --- VS Code extension host ---
+.vscode-test/
+.vscode/*.log
+
+# --- React / Vite ---
+dashboard/dist/
+dashboard/node_modules/
+
+# --- Environment & secrets ---
+.env
+.env.local
+.env.*.local
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Patent & legal documents (kept offline for protection) ---
+*.docx
+*.pdf
+
+# --- Personal evidence / scratch files ---
+git_history_evidence.txt
+git_history_full_evidence.txt
+
+# --- Logs ---
+*.log
+logs/

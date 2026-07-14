@@ -6,7 +6,7 @@
 > **"Transforming Carbon-Heavy Algorithms into Eco-Futurist Efficiency."**
 
 [![Build Status](https://img.shields.io/badge/Build-Success-brightgreen)](https://github.com/arjaviii/code-green)
-[![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
+[![License](https://img.shields.io/badge/License-Proprietary%20%7C%20All%20Rights%20Reserved-red)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-VSCode-68217A)](https://marketplace.visualstudio.com/)
 [![Version](https://img.shields.io/badge/Version-2.0.0-emerald)](package.json)
 

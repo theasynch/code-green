@@ -1,0 +1,116 @@
+PROPRIETARY SOFTWARE LICENSE
+
+Code-Green — Sustainable Computing Auditor
+Copyright (c) 2024–2026 Om Krunal Awthankar. All rights reserved.
+
+================================================================================
+NOTICE OF PROPRIETARY RIGHTS
+================================================================================
+
+This software, including all associated source code, algorithms, methods,
+processes, techniques, scoring models, energy estimation formulae, hardware
+calibration methodology, data structures, visual designs, documentation, and
+all other intellectual property embodied herein (collectively, the "Software"),
+is the exclusive proprietary property of Om Krunal Awthankar ("Author").
+
+The Software is protected by copyright law, trade secret law, and other
+applicable intellectual property laws and treaties. The algorithms, scoring
+models, and methods implemented in this Software may be subject to one or more
+pending or granted intellectual property protections.
+
+================================================================================
+GRANT OF RIGHTS — NONE
+================================================================================
+
+NO LICENSE, EXPRESS OR IMPLIED, IS GRANTED BY THIS NOTICE. The Author has not
+granted, and does not hereby grant, any person or entity any right, license,
+permission, or authorization to:
+
+  (a) use, execute, or run the Software or any portion thereof;
+  (b) copy, reproduce, or duplicate the Software or any portion thereof;
+  (c) modify, adapt, translate, or create derivative works based upon the
+      Software or any portion thereof;
+  (d) distribute, sublicense, sell, rent, lease, transfer, or otherwise
+      convey the Software or any portion thereof to any third party;
+  (e) publicly display, publicly perform, or broadcast the Software or any
+      portion thereof;
+  (f) reverse engineer, disassemble, decompile, or otherwise attempt to
+      derive the source code, algorithms, or underlying logic of any compiled
+      or obfuscated portion of the Software;
+  (g) use the Software's algorithms, methods, scoring formulae, or
+      calibration techniques as a basis for any competing product or service,
+      whether or not substantially similar in form.
+
+Any use of the Software not expressly authorized in writing by the Author is
+strictly prohibited and constitutes an infringement of the Author's rights.
+
+================================================================================
+INSTITUTIONAL AND ACADEMIC USE
+================================================================================
+
+The submission of any invention disclosure, patent application, or similar
+filing to any institution, university, or organization does not, in any way,
+transfer, assign, license, or convey any ownership, co-ownership, or rights
+in the Software or the intellectual property embodied herein to such
+institution or organization, unless the Author has separately executed a
+written assignment agreement expressly granting such rights. The act of
+disclosure alone confers no rights upon any third party, including any
+educational or research institution.
+
+The Author retains sole and exclusive authorship, inventorship, and
+ownership of all intellectual property rights in and to the Software and
+its constituent algorithms, methods, and innovations, subject only to any
+valid and enforceable agreement separately and explicitly executed in writing
+by the Author.
+
+================================================================================
+NO IMPLIED LICENSES
+================================================================================
+
+Nothing in this License shall be construed as conferring any right or license
+under any intellectual property right of the Author, whether by estoppel,
+implication, waiver, or otherwise. All rights not expressly granted herein
+are expressly reserved by the Author.
+
+================================================================================
+DISCLAIMER OF WARRANTIES
+================================================================================
+
+THE SOFTWARE IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, TITLE, OR NON-INFRINGEMENT. THE AUTHOR
+MAKES NO REPRESENTATION THAT THE SOFTWARE IS ERROR-FREE OR THAT ITS USE WILL
+NOT INFRINGE THE RIGHTS OF THIRD PARTIES.
+
+================================================================================
+LIMITATION OF LIABILITY
+================================================================================
+
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM,
+OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+================================================================================
+GOVERNING LAW AND JURISDICTION
+================================================================================
+
+This License shall be governed by and construed in accordance with the laws
+of India, without regard to its conflict-of-law provisions. Any disputes
+arising under or in connection with this License shall be subject to the
+exclusive jurisdiction of the competent courts of India.
+
+================================================================================
+CONTACT AND PERMISSIONS
+================================================================================
+
+All inquiries regarding licensing, commercial use, research collaborations,
+or any authorized use of the Software must be directed in writing to the
+Author. Unauthorized use will be pursued to the fullest extent permitted
+by applicable law.
+
+Author:  Om Krunal Awthankar
+Project: Code-Green — Sustainable Computing Auditor
+         https://github.com/arjaviii/code-green
+
+================================================================================

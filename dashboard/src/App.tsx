@@ -330,7 +330,7 @@ const App: React.FC = () => {
                   <span className="score-percent">%</span>
                 </div>
               </div>
-              <div className="score-label">SS = 100 − (Σ sev·W) × log₁₀(LOC)</div>
+              <div className="score-label">SS = 100 · (1 − tanh(Σ sev·W · K / √LOC))</div>
               <div className="efficiency-msg">{getEfficiencyMsg()}</div>
             </div>
           </div>
