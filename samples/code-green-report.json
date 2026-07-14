@@ -1,6 +1,6 @@
 {
   "projectName": "samples",
-  "lastUpdate": "2026-04-17T18:51:00.959Z",
+  "lastUpdate": "2026-05-17T15:08:26.114Z",
   "sustainabilityScore": 82.8,
   "totalDeltaE_joules": 8.459733333,
   "totalDeltaE_millijoules": 8459.733,
@@ -26,7 +26,7 @@
       "co2_micrograms": -0.5145833333333332,
       "modelUsed": "CPU",
       "fileName": "python_vampires.py",
-      "fullPath": "c:\\Users\\awtha\\Documents\\GitHub\\code-green\\samples\\python_vampires.py",
+      "fullPath": "c:\\Users\\awtha\\Documents\\GitHub\\code-green-fork\\samples\\python_vampires.py",
       "line": 1,
       "character": 0
     },
@@ -43,7 +43,7 @@
       "co2_micrograms": 1504.1666666666667,
       "modelUsed": "Memory",
       "fileName": "aggressive_vampires.java",
-      "fullPath": "c:\\Users\\awtha\\Documents\\GitHub\\code-green\\samples\\aggressive_vampires.java",
+      "fullPath": "c:\\Users\\awtha\\Documents\\GitHub\\code-green-fork\\samples\\aggressive_vampires.java",
       "line": 5,
       "character": 49
     },
@@ -60,7 +60,7 @@
       "co2_micrograms": 170.67013888888889,
       "modelUsed": "CPU",
       "fileName": "aggressive_vampires.java",
-      "fullPath": "c:\\Users\\awtha\\Documents\\GitHub\\code-green\\samples\\aggressive_vampires.java",
+      "fullPath": "c:\\Users\\awtha\\Documents\\GitHub\\code-green-fork\\samples\\aggressive_vampires.java",
       "line": 9,
       "character": 8
     }
